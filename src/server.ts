@@ -1,6 +1,13 @@
 import express from "express"
+import "./database"
+import { routes } from "./routes"
+
 const app = express()
 const PORT = 3000
+app.use(express.json());
+
+
+app.use(routes)
 /**
  * GET = Buscas
  * POST = Criação
@@ -9,12 +16,6 @@ const PORT = 3000
  * PATCH = Alterar informação especifica 
  */
 
-app.get("/", (req,res) =>{
-    return res.json({message: "OLA NLW 05"})
-})
 
-app.post("/", (req,res) => {
-    return res.json({message: "Usuario salvo com sucesso!"})
-})
 
 app.listen(PORT, () => console.log("Server is running on port:"+ PORT))
