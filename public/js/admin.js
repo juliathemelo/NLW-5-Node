@@ -34,6 +34,8 @@ function call(id){
         user_id: connection.user_id
     }
 
+    socket.emit("admin_user_in_support", params)
+
     socket.emit("admin_list_messeges_by_user", params, (messages) => {
         const divMessages = document.getElementById(`allMessages${connection.user_id}`);
 
@@ -83,6 +85,7 @@ function sendMessage(id){
 }
 
 socket.on("admin_receive_message", data => {
+    console.log(data)
     const connection = connectionInSupport.find(
         connection => connection.socket_id === data.socket_id,
     );
